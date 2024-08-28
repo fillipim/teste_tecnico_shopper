@@ -1,0 +1,37 @@
+version: "3"
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - NODE_ENV=development
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - PGHOST=db
+      - PGUSER=${PGUSER}
+      - PGPASSWORD=${PGPASSWORD}
+      - PGDATABASE=readings_db
+      - PGPORT=5432
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - app-network
+    command: sh -c "npm run migrate:run && npm run dev"
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+      POSTGRES_DB: readings_db
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
