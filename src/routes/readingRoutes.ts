@@ -1,7 +1,14 @@
 import { Router } from "express";
 import { readingsContorller } from "../controllers/readingsController";
-import { validateDataMiddleware } from "../middlewares/validationsMiddleware";
+import { validateUploadDataMiddleware } from "../middlewares/validateUploadMiddleware";
+import { validateComfirmDataMiddleware } from "../middlewares/validateConfirmMiddleware";
+import { confirmController } from "../controllers/comfirmController";
 
 export const readingRoutes = Router();
 
-readingRoutes.post("/upload", validateDataMiddleware, readingsContorller);
+readingRoutes.post("/upload", validateUploadDataMiddleware, readingsContorller);
+readingRoutes.patch(
+  "/comfirm",
+  validateComfirmDataMiddleware,
+  confirmController
+);

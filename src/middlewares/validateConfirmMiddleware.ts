@@ -1,12 +1,12 @@
-import { Request, Response, NextFunction, RequestHandler } from "express";
-import { uploadSchema } from "../schema/upload.schema";
+import { RequestHandler, NextFunction, Request, Response } from "express";
+import { confirmSchema } from "../schema/confirm.schema";
 
-export const validateDataMiddleware: RequestHandler = (
+export function validateComfirmDataMiddleware(
   req: Request,
   res: Response,
   next: NextFunction
-) => {
-  const { error } = uploadSchema.validate(req.body);
+) {
+  const { error } = confirmSchema.validate(req.body);
   if (error) {
     return res.status(400).json({
       error_code: "INVALID_DATA",
@@ -15,4 +15,4 @@ export const validateDataMiddleware: RequestHandler = (
     });
   }
   return next();
-};
+}
