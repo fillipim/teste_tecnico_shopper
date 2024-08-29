@@ -6,11 +6,13 @@
     "emitDecoratorMetadata": true,
     "strict": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "rootDir": "./src",
     "outDir": "./dist",
     "strictPropertyInitialization": false
   },
   "scripts": {
-    "start": "ts-node src/app.ts",
+    "start": "nodemon src/app.ts",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js"
   },
   "include": ["src/**/*.ts"],
