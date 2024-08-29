@@ -5,4 +5,9 @@ interface UploadRequestBody {
   measure_type: "WATER" | "GAS";
 }
 
-export { UploadRequestBody };
+interface editMeasureRequestBody {
+  measure_uuid: string;
+  confirmed_value: number;
+}
+
+export { UploadRequestBody, editMeasureRequestBody };
