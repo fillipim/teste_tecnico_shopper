@@ -1,3 +1,4 @@
+import errorCodes from "../constants/errorCodes";
 import { AppDataSource } from "../data-source";
 import { Measure } from "../entities/measure.entity";
 import AppError from "../errors/appError";
@@ -17,11 +18,7 @@ export async function createMeasure(data: UploadRequestBody) {
     .getOne();
 
   if (existingMeasure) {
-    throw new AppError(
-      "Já existe uma leitura para este tipo no mês atual",
-      409,
-      "DOUBLE_REPORT"
-    );
+    throw new AppError(errorCodes.DOUBLE_REPORT, 409);
   }
 
   const measure = await extractMeterValue(image);

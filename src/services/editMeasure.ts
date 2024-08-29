@@ -1,3 +1,4 @@
+import errorCodes from "../constants/errorCodes";
 import { AppDataSource } from "../data-source";
 import { Measure } from "../entities/measure.entity";
 import AppError from "../errors/appError";
@@ -11,15 +12,11 @@ export async function editMeasure(data: editMeasureRequestBody) {
   });
 
   if (!measure) {
-    throw new AppError("Leitura do mês ja realizada", 404, "MEASURE_NOT_FOUND");
+    throw new AppError(errorCodes.MEASURE_NOT_FOUND);
   }
 
   if (measure.hasConfirmed) {
-    throw new AppError(
-      "Leitura do mês ja realizada",
-      409,
-      "CONFIRMATION_DUPLICATE"
-    );
+    throw new AppError(errorCodes.CONFIRMATION_DUPLICATE, 409);
   }
 
   measure.measureValue = data.confirmed_value;
