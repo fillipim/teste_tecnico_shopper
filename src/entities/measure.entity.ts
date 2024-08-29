@@ -2,18 +2,20 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  CreateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
 
-@Entity("Measure")
+@Entity("measure")
 export class Measure {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ type: "varchar", length: 255 })
   customerCode: string;
 
-  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @Column({ type: "varchar" })
+  @Column({ type: "timestamp" })
   measureDatetime: Date;
 
   @Column({
@@ -22,15 +24,18 @@ export class Measure {
   })
   measureType: "WATER" | "GAS";
 
-  @Column()
+  @Column({ type: "decimal" })
   measureValue: number;
 
   @Column()
   imageUrl: string;
 
-  @Column({
-    type: "boolean",
-    default: false,
-  })
+  @Column({ default: false })
   hasConfirmed: boolean;
+
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  createdAt: Date;
+
+  @Column({ type: "timestamp", nullable: true })
+  confirmedAt: Date;
 }
