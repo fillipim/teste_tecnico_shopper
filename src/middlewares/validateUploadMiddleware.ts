@@ -9,7 +9,12 @@ export async function validateUploadDataMiddleware(
 ) {
   const { error } = uploadSchema.validate(req.body);
   if (error) {
-    return res.status(400).json(errorCodes.INVALID_DATA);
+    const errorDescription = error.details[0].message;
+
+    return res.status(400).json({
+      error_code: errorCodes.INVALID_DATA.error_code,
+      error_description: errorDescription,
+    });
   }
   return next();
 }
