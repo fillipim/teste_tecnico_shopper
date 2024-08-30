@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express";
+
+import { validate as isValidUUID } from "uuid";
 import { confirmSchema } from "../schema/confirm.schema";
 import errorCodes from "../constants/errorCodes";
-import { validate as isValidUUID } from "uuid";
 
 export function validateComfirmDataMiddleware(
   req: Request,
