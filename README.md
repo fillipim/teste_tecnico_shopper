@@ -10,6 +10,8 @@ Este serviço gerencia a leitura individualizada de consumo de água e gás. Uti
 
 ## Configuração
 
+- **Docker:** Certifique-se de que o Docker está instalado e em execução. O projeto utiliza Docker para containerização. Se ainda não tiver o Docker instalado, siga as instruções em [docker.com](https://docs.docker.com/get-docker/).
+
 1. **Clone o repositório:**
 
 2. **Instale as dependências:**
