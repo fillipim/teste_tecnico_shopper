@@ -4,6 +4,7 @@ import "express-async-errors";
 import { AppDataSource } from "./data-source";
 import { readingRoutes } from "./routes/readingRoutes";
 import { handleError } from "./errors/appError";
+import path = require("path");
 
 const app = express();
 
@@ -21,6 +22,4 @@ AppDataSource.initialize()
       console.log(`Servidor rodando na porta ${PORT}`);
     });
   })
-  .catch((error) =>
-    console.log("Erro ao conectar no banco de dadosQ: ", error)
-  );
+  .catch((error) => console.log("Erro ao conectar no banco de dados: ", error));

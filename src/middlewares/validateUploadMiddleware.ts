@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction, RequestHandler } from "express";
-import { uploadSchema } from "../schema/upload.schema";
+import { Request, Response, NextFunction } from "express";
 import errorCodes from "../constants/errorCodes";
+import { uploadSchema } from "../schema/upload.schema";
 
 export async function validateUploadDataMiddleware(
   req: Request,

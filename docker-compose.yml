@@ -25,10 +25,9 @@ services:
       - PGPORT=5432
     volumes:
       - .:/app
-      - /app/node_modules
     networks:
       - app-network
-    command: sh -c "npm run migrate:run && npm start"
+    command: sh -c "npm run test && npm run migrate:run && npm run dev"
 
 networks:
   app-network:
